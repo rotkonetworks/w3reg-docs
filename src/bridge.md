@@ -33,9 +33,14 @@ so messaging data on the server side is encrypted.
 
 ## Advanced Self-Hosting Options
 
-For users interested in self-hosting, these more complex options exist but are beyond the scope of this guide:
+For registrars interested in self-hosting, these options are available:
 
-- Setting up a personal Synapse server with mau.fi bridges
-- Running bridge-manager with a self-hosted Synapse server
+* Setting up your own [Synapse server](https://github.com/element-hq/synapse) with [mau.fi bridges](https://docs.mau.fi/bridges/)
 
-These options require significant technical expertise and infrastructure management.
+* Using [beeper/bridge-manager](https://github.com/beeper/bridge-manager) with your own [Matrix](https://matrix.org/) [Synapse](https://github.com/element-hq/synapse) server
+
+Both options require:
+
+* Setting up and maintaining your own [Matrix](https://matrix.org/) [Synapse](https://github.com/element-hq/synapse) server
+
+* More technical expertise in [Matrix](https://spec.matrix.org/latest/server-server-api/) server administration
