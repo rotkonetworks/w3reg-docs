@@ -22,22 +22,25 @@ jobs:
       - name: Install Dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm nodejs npm git
+          pacman -S --noconfirm rustup jq curl git tar gzip
 
-      - name: Setup Node.js
+      - name: Setup Rust
         run: |
-          LATEST_NODE=$(curl -s https://api.github.com/repos/nodejs/node/releases/latest | jq -r ".tag_name")
-          curl -LO "https://nodejs.org/dist/${LATEST_NODE}/node-${LATEST_NODE}-linux-x64.tar.gz"
-          tar xzf node-${LATEST_NODE}-linux-x64.tar.gz
-          export PATH=$PATH:$(pwd)/node-${LATEST_NODE}-linux-x64/bin
+          rustup install stable
+          rustup default stable
 
-      - name: Install and build Astro project
+      - name: Download and setup mdBook
         run: |
-          npm install
-          npm run build
+          LATEST_RELEASE=$(curl -s https://api.github.com/repos/rust-lang/mdBook/releases/latest | jq -r ".tag_name")
+          curl -LO "https://github.com/rust-lang/mdBook/releases/download/${LATEST_RELEASE}/mdbook-${LATEST_RELEASE}-x86_64-unknown-linux-gnu.tar.gz"
+          tar xzf mdbook-${LATEST_RELEASE}-x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin
+
+      - name: Build mdBook
+        run: |
+          mdbook build docs
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_PAT }}
-          publish_dir: ./dist
+          publish_dir: ./book
