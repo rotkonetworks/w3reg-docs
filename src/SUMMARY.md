@@ -6,3 +6,5 @@
 - [Frontend](./frontend.md)
 - [Setup testnet](./testnet.md)
 - [Pallet](./pallet.md)
+
+[Support](./support.md)
