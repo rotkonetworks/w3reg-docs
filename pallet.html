@@ -1,0 +1,334 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pallet - w3reg</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">w3reg</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="identity-verification-system"><a class="header" href="#identity-verification-system">Identity Verification System</a></h1>
+<h2 id="1-overview"><a class="header" href="#1-overview">1. Overview</a></h2>
+<p>The identity verification system consists of registrars who verify specific fields of user identities. The system uses bitflags to specify verification fields and proxies for secure operation.</p>
+<h2 id="2-identity-fields-and-bitflags"><a class="header" href="#2-identity-fields-and-bitflags">2. Identity Fields and Bitflags</a></h2>
+<h3 id="field-positions"><a class="header" href="#field-positions">Field Positions</a></h3>
+<p>Each identity field corresponds to a specific bit position in a binary number:</p>
+<pre><code>Position | Field         | Binary Value      | Decimal Value
+---------|--------------|-------------------|---------------
+9        | Discord      | 0b1000000000      | 512
+8        | GitHub       | 0b0100000000      | 256
+7        | Twitter      | 0b0010000000      | 128
+6        | Image        | 0b0001000000      | 64
+5        | PgpFingerprint| 0b0000100000     | 32
+4        | Email        | 0b0000010000      | 16
+3        | Matrix       | 0b0000001000      | 8
+2        | Web          | 0b0000000100      | 4
+1        | Legal        | 0b0000000010      | 2
+0        | Display      | 0b0000000001      | 1
+</code></pre>
+<h3 id="common-combinations"><a class="header" href="#common-combinations">Common Combinations</a></h3>
+<pre><code>Standard Verification (665):
+Discord + Twitter + Email + Matrix + Display
+1010011001 = 512 + 128 + 16 + 8 + 1 = 665
+</code></pre>
+<h2 id="3-setting-up-a-registrar"><a class="header" href="#3-setting-up-a-registrar">3. Setting Up a Registrar</a></h2>
+<h3 id="setting-fields"><a class="header" href="#setting-fields">Setting Fields</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>identity.setFields(registrarIndex, fields)
+<span class="boring">}</span></code></pre></pre>
+<p>Example:</p>
+<pre><code>identity.setFields(0, 665)  // Sets registrar 0 to verify Display, Matrix, Email, Twitter, Discord
+</code></pre>
+<h3 id="field-validation"><a class="header" href="#field-validation">Field Validation</a></h3>
+<ul>
+<li>Chain automatically blocks judgment requests that don't match registrar's fields</li>
+<li>All specified fields must be present in identity information</li>
+<li>Extra fields are ignored for verification purposes</li>
+</ul>
+<h2 id="4-proxy-system"><a class="header" href="#4-proxy-system">4. Proxy System</a></h2>
+<h3 id="setting-up-proxy"><a class="header" href="#setting-up-proxy">Setting Up Proxy</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>proxy.addProxy(delegate, proxyType, delay)
+<span class="boring">}</span></code></pre></pre>
+<p>Parameters:</p>
+<ul>
+<li><code>delegate</code>: Hot wallet address for making judgments</li>
+<li><code>proxyType</code>: IdentityJudgement</li>
+<li><code>delay</code>: 0 (no delay for judgments)</li>
+</ul>
+<h3 id="proxy-types-available"><a class="header" href="#proxy-types-available">Proxy Types Available</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub enum ProxyType {
+    Any,               // Full permissions
+    NonTransfer,       // Non-financial calls
+    CancelProxy,       // Cancel proxy announcements
+    Identity,          // All identity calls
+    IdentityJudgement, // Only judgment calls
+    Collator          // Collator selection calls
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="5-judgment-process"><a class="header" href="#5-judgment-process">5. Judgment Process</a></h2>
+<h3 id="available-judgments"><a class="header" href="#available-judgments">Available Judgments</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub enum Judgement {
+    Unknown,            // 0
+    FeePaid(u128),     // 1 - Judgement Requested from registrar(index)
+    Reasonable,        // 2 - Standard positive judgment
+    KnownGood,         // 3
+    OutOfDate,         // 4
+    LowQuality,        // 5
+    Erroneous         // 6 - Used for failed verifications
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="making-judgments-via-proxy"><a class="header" href="#making-judgments-via-proxy">Making Judgments via Proxy</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>proxy.proxy(
+    registrarAccount,
+    Some(IdentityJudgement),
+    identity.provideJudgement(regIndex, target, judgement, identityHash)
+)
+<span class="boring">}</span></code></pre></pre>
+<h2 id="6-security-considerations"><a class="header" href="#6-security-considerations">6. Security Considerations</a></h2>
+<h3 id="chain-level-security"><a class="header" href="#chain-level-security">Chain-Level Security</a></h3>
+<ul>
+<li>Automatic field validation</li>
+<li>Proxy system limits exposure of registrar account</li>
+<li>Identity hash changes trigger new verification requirements</li>
+</ul>
+<h3 id="best-practices"><a class="header" href="#best-practices">Best Practices</a></h3>
+<ol>
+<li>Use cold storage for main registrar account</li>
+<li>Set up proxy for daily operations</li>
+<li>Regularly verify proxy permissions</li>
+<li>Monitor identity hash changes</li>
+</ol>
+<h2 id="7-implementation-example"><a class="header" href="#7-implementation-example">7. Implementation Example</a></h2>
+<h3 id="standard-setup-process"><a class="header" href="#standard-setup-process">Standard Setup Process</a></h3>
+<ol>
+<li>Get registered as a registrar</li>
+<li>Set verification fields:
+<pre><code>identity.setFields(registrarIndex, 665)
+</code></pre>
+</li>
+<li>Set up proxy:
+<pre><code>proxy.addProxy(hotWalletAddress, IdentityJudgement, 0)
+</code></pre>
+</li>
+<li>Use hot wallet for judgments:
+<pre><code>proxy.proxy(registrarAccount, Some(IdentityJudgement), 
+           identity.provideJudgement(...))
+</code></pre>
+</li>
+</ol>
+<h3 id="field-verification"><a class="header" href="#field-verification">Field Verification</a></h3>
+<p>The system automatically ensures:</p>
+<ul>
+<li>All required fields are present</li>
+<li>Fields match registrar's bitflag specification</li>
+<li>Identity hash consistency</li>
+<li>Proper proxy permissions</li>
+</ul>
+<h2 id="8-important-notes"><a class="header" href="#8-important-notes">8. Important Notes</a></h2>
+<ul>
+<li>Identity hashes change when verified fields are modified</li>
+<li>Only specified fields are considered for verification</li>
+<li>Proxy permissions cannot be exceeded</li>
+<li>Chain enforces all validation rules</li>
+<li>Registrar must handle both successful (Reasonable) and failed (Erroneous) cases</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="testnet.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="testnet.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
