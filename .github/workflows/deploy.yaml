@@ -1,0 +1,43 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    container: 
+      image: archlinux:latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm nodejs npm git
+
+      - name: Setup Node.js
+        run: |
+          LATEST_NODE=$(curl -s https://api.github.com/repos/nodejs/node/releases/latest | jq -r ".tag_name")
+          curl -LO "https://nodejs.org/dist/${LATEST_NODE}/node-${LATEST_NODE}-linux-x64.tar.gz"
+          tar xzf node-${LATEST_NODE}-linux-x64.tar.gz
+          export PATH=$PATH:$(pwd)/node-${LATEST_NODE}-linux-x64/bin
+
+      - name: Install and build Astro project
+        run: |
+          npm install
+          npm run build
+          
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_PAT }}
+          publish_dir: ./dist
