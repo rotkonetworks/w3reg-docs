@@ -7,4 +7,5 @@
 - [Setup testnet](./testnet.md)
 - [Pallet](./pallet.md)
 
-[Support](./support.md)
+- [FAQ](./FAQ.md)
+- [Support](./support.md)
