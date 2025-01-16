@@ -1,4 +1,4 @@
-# W3Registrar Setup Guide
+# W3Registrar backend setup
 
 ## Prerequisites
 - Redis server (not needed for Docker setup)
@@ -22,6 +22,7 @@ docker compose up -d
 ## 2. Binary Installation
 
 1. Create service user:
+
 ```bash
 sudo useradd -r -s /bin/false w3r
 sudo mkdir -p /etc/w3registrar
@@ -31,6 +32,7 @@ sudo chown -R w3r:w3r /etc/w3registrar
 2. Install binary:
 ```bash
 # Download from releases page
+# https://github.com/rotkonetworks/w3registrar/releases/
 sudo cp w3registrar-* /usr/local/bin/w3registrar
 sudo chown w3r:w3r /usr/local/bin/w3registrar
 sudo chmod 755 /usr/local/bin/w3registrar
@@ -47,7 +49,7 @@ sudo chmod 600 /etc/w3registrar/config.toml
 ```bash
 sudo tee /etc/systemd/system/w3registrar.service << EOF
 [Unit]
-Description=W3 Registrar Service
+Description=Identity Registrar Service
 After=network.target redis.service
 
 [Service]
@@ -72,7 +74,7 @@ sudo systemctl enable --now w3registrar
 sudo apt install -y build-essential pkg-config libssl-dev git
 
 # Build
-git clone https://github.com/your-repo/w3registrar.git
+git clone https://github.com/rotkonetworks/w3registrar.git
 cd w3registrar
 cargo build --release
 
@@ -82,10 +84,13 @@ cargo build --release
 ## Configuration Example
 
 ```toml
-[watcher]
-endpoint = "wss://dev.rotko.net/people-rococo/"
-registrar_index = 0
-keystore_path = "./keyfile"
+[registrar]
+
+[registrar.polkadot]
+endpoint = "wss://people-polkadot.dotters.network" # people system chain
+registrar_index = 11 # your registrar index
+keystore_path = "./keyfile_polkadot" # IdentityJudgement proxy private key
+accountid = "1Ard..."  # registrar public key
 
 [websocket]
 host = "127.0.0.1"
@@ -96,10 +101,10 @@ host = "redis"  # Use "redis" for Docker, "127.0.0.1" otherwise
 port = 6379
 
 [matrix]
-homeserver = "https://matrix.org"
+homeserver = "https://matrix.beeper.com"
 username = "regbot"
 password = "your-password"
-security_key = "your-security-key"
+security_key = "EsTg A8Uh 9yFK 3uN1 16s6 WVDA gHLU kEid j9F1 iHt6 5V3u XSPs"
 admins = ["@admin:matrix.org"]
 ```
 

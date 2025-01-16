@@ -3,8 +3,11 @@
 - [Intro](./intro.md)
 - [Bridge](./bridge.md)
 - [Backend](./backend.md)
+  - [Redis](./redis.md)
 - [Frontend](./frontend.md)
 - [Setup testnet](./testnet.md)
+- [Proxy setup](./proxy_setup.md)
 - [Pallet](./pallet.md)
 
-[Support](./support.md)
+- [FAQ](./FAQ.md)
+- [Support](./support.md)

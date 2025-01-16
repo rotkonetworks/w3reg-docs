@@ -4,3 +4,7 @@ language = "en"
 multilingual = false
 src = "src"
 title = "w3reg"
+
+[output.html]
+default-theme = "ayu"
+theme = "theme"
