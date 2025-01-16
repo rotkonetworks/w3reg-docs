@@ -6,10 +6,10 @@ To install `pop-cli` for the testnet or use our deployed testnet, follow these s
 ```bash
 git clone https://github.com/rotkonetworks/pop-cli
 cd pop-cli
-cargo run up parachain --file ~/rotko/pop-cli/tests/networks/rococo+people.toml --verbose
+vim tests/networks/rococo+people.toml
 ```
 
-`cat tests/networks/rococo+people.toml`
+With the following content
 ```
 [relaychain]
 chain = "rococo-local"
@@ -33,8 +33,13 @@ args = [
 ]
 ```
 
+Then continue building the local testnet
+```
+cargo run up parachain --file tests/networks/rococo+people.toml --verbose
+```
 #### 2. Set WebSocket Endpoint
 Use either the provided endpoint or your local testnet for `people-rococo`:
+Use either the provided endpoint/portal or your local testnet for `people-rococo`:
 ```
 wss://dev.rotko.net/people-rococo
 ```
