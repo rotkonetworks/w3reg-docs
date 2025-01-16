@@ -38,7 +38,6 @@ Then continue building the local testnet
 cargo run up parachain --file tests/networks/rococo+people.toml --verbose
 ```
 #### 2. Set WebSocket Endpoint
-Use either the provided endpoint or your local testnet for `people-rococo`:
 Use either the provided endpoint/portal or your local testnet for `people-rococo`:
 ```
 wss://dev.rotko.net/people-rococo
