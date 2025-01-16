@@ -9,6 +9,30 @@ cd pop-cli
 cargo run up parachain --file ~/rotko/pop-cli/tests/networks/rococo+people.toml --verbose
 ```
 
+`cat tests/networks/rococo+people.toml`
+```
+[relaychain]
+chain = "rococo-local"
+
+[[relaychain.nodes]]
+name = "alice"
+validator = true
+
+[[relaychain.nodes]]
+name = "bob"
+validator = true
+
+[[parachains]]
+id = 1004
+chain = "people-rococo-local"
+
+[[parachains.collators]]
+name = "people-01"
+args = [
+    "--pruning=archive"
+]
+```
+
 #### 2. Set WebSocket Endpoint
 Use either the provided endpoint or your local testnet for `people-rococo`:
 ```
