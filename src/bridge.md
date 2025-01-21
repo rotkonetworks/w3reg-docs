@@ -17,7 +17,7 @@ so messaging data on the server side is encrypted.
    - Use Element web client to set/reset your account password
    - Store this password securely - you'll need it for bridge connections
 
-Please refer to [Beeper setup](bridge/beeper.md)
+Please refer to [Beeper setup](bridge/beeper/index.md)
 
 ### Bridge Configuration
 
