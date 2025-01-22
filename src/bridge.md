@@ -27,6 +27,9 @@ Please refer to [Beeper setup](bridge/beeper/index.md)
    - Ensure you're in the same channels as people who need to message you
    - Configure your Discord privacy settings to allow direct messages 
 
+Please read [Discord Bridge Setup](bridge/discord/index.md) for more information
+
+
 #### Twitter Bridge
 1. Connect your Discord account through Beeper
 2. Important Discord-specific steps:
