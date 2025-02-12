@@ -7,20 +7,19 @@ The identity verification system consists of registrars who verify specific fiel
 
 ### Field Positions
 Each identity field corresponds to a specific bit position in a binary number:
-```
-Position | Field         | Binary Value      | Decimal Value
----------|--------------|-------------------|---------------
-9        | Discord      | 0b1000000000      | 512
-8        | GitHub       | 0b0100000000      | 256
-7        | Twitter      | 0b0010000000      | 128
-6        | Image        | 0b0001000000      | 64
-5        | PgpFingerprint| 0b0000100000     | 32
-4        | Email        | 0b0000010000      | 16
-3        | Matrix       | 0b0000001000      | 8
-2        | Web          | 0b0000000100      | 4
-1        | Legal        | 0b0000000010      | 2
-0        | Display      | 0b0000000001      | 1
-```
+Position | Field          | Binary Value | Decimal Value
+---------|----------------|--------------|---------------
+9        | Discord        | `1000000000` | 512
+8        | GitHub         | `0100000000` | 256
+7        | Twitter        | `0010000000` | 128
+6        | Image          | `0001000000` | 64
+5        | PgpFingerprint | `0000100000` | 32
+4        | Email          | `0000010000` | 16
+3        | Matrix         | `0000001000` | 8
+2        | Web            | `0000000100` | 4
+1        | Legal          | `0000000010` | 2
+0        | Display        | `0000000001` | 1
+
 
 ### Common Combinations
 ```
