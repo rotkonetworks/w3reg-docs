@@ -27,6 +27,16 @@ Standard Verification (665):
 Discord + Twitter + Email + Matrix + Display
 1010011001 = 512 + 128 + 16 + 8 + 1 = 665
 ```
+### Calculating Field Values
+You can calculate the correct values to set up the fields based on the fields that you're going to support by setting each to 1. Note that the most significant bit is for Discord, while Display is the least significant.
+
+```
+Standard Verification (669):
+Discord + Twitter + Email + Matrix + Web + Display
+1010011101 = 512 + 128 + 16 + 8 + 4 + 1 = 669
+```
+
+You can use https://jsfiddle.net/zev5sfxj/ to test if your bit flags match the fields you want to support.
 
 ## 3. Setting Up a Registrar
 
