@@ -17,6 +17,8 @@ so messaging data on the server side is encrypted.
    - Use Element web client to set/reset your account password
    - Store this password securely - you'll need it for bridge connections
 
+Please refer to [Beeper setup](bridge/beeper/index.md)
+
 ### Bridge Configuration
 
 #### Discord Bridge
@@ -24,6 +26,9 @@ so messaging data on the server side is encrypted.
 2. Important Discord-specific steps:
    - Ensure you're in the same channels as people who need to message you
    - Configure your Discord privacy settings to allow direct messages 
+
+Please read [Discord Bridge Setup](bridge/discord/index.md) for more information
+
 
 #### Twitter Bridge
 1. Connect your Discord account through Beeper
